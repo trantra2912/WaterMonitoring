@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Theo dõi chất lượng nước</title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <!--Replace with your tailwind.css once created-->
+    <script src="https://kit.fontawesome.com/fc00644ff0.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,200" />
+    <style>
+        .fontsite {
+            font-size: 22px;
+        }
+    </style>
+     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+
+<body class="bg-gradient-to-r from-blue-900 to-gray-800 font-sans leading-normal tracking-normal mt-9">
+
+    <main>
+        <h1 class="bg-gradient-to-r from-blue-900 to-gray-800 text-white"
+            style="padding-bottom: 40px; text-align: center; font-size: 35px ; font-weight: 700; margin-bottom: -10px;">
+            POTABLE WATER MONITORING</h1>
+        <div class="flex flex-col" style="justify-content: center;">
+
+            <section class="bg-gradient-to-r from-blue-900 to-gray-800">
+                <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5" style="width: 100%;">
+                    <div class="flex flex-wrap" style="justify-content: space-around;">
+                        <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                            <!--Metric Card-->
+                            <div
+                                class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
+                                <div class="flex flex-row items-center">
+                                    <div class="flex-shrink pr-4">
+                                        <div class="rounded-full p-5 bg-green-600">
+                                            <!-- <span class="material-symbols-outlined"
+                                                style="font-size: 20px ; color:#ffffff;">
+                                                device_thermostat
+                                            </span> -->
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 text-right md:text-center">
+                                        <h2 class="font-bold text-gray-600 fontsite">Nhiệt độ </h2>
+                                        <p id="Nhietdo" class="font-bold text-3xl">3249 &#xB0;C<span class="text-green-500"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Metric Card-->
+                        </div>
+                        <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                            <!--Metric Card-->
+                            <div
+                                class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+                                <div class="flex flex-row items-center">
+                                    <div class="flex-shrink pr-4">
+                                        <div class="rounded-full p-5 bg-pink-600">
+                                            <!-- <i
+                                                class="fas fa-users fa-2x fa-inverse"></i> -->
+                                            </div>
+                                    </div>
+                                    <div class="flex-1 text-right md:text-center">
+                                        <h2 class="font-bold  text-gray-600 fontsite">DO <span
+                                                style="font-size: 10px; margin-left: -5px;">baohoa</span></h2>
+                                        <p id="DO_baohoa" class="font-bold text-3xl">249 <span class="text-pink-500"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Metric Card-->
+                        </div>
+                        <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                            <!--Metric Card-->
+                            <div
+                                class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+                                <div class="flex flex-row items-center">
+                                    <div class="flex-shrink pr-4">
+                                        <div class="rounded-full p-5 bg-yellow-600">
+                                            <!-- <i
+                                                class="fas fa-user-plus fa-2x fa-inverse"></i> -->
+                                            </div>
+                                    </div>
+                                    <div class="flex-1 text-right md:text-center">
+                                        <h2 class="font-bold text-gray-600 fontsite">Độ đục</h2>
+                                        <p id="NTU" class="font-bold text-3xl">2 NTU<span class="text-yellow-600"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Metric Card-->
+                        </div>
+                        <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                            <!--Metric Card-->
+                            <div
+                                class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+                                <div class="flex flex-row items-center">
+                                    <div class="flex-shrink pr-4">
+                                        <div class="rounded-full p-5 bg-blue-600">
+                                            <!-- <i
+                                                class="fas fa-server fa-2x fa-inverse"></i> -->
+                                            </div>
+                                    </div>
+                                    <div class="flex-1 text-right md:text-center">
+                                        <h2 class="font-bold  text-gray-600 fontsite">WQI <span
+                                                style="margin-left: -5px; font-size: 10px;">doduc</span></h2>
+                                        <p id="WQI_NTU" class="font-bold text-3xl">152 </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Metric Card-->
+                        </div>
+                        <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                            <!--Metric Card-->
+                            <div
+                                class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
+                                <div class="flex flex-row items-center">
+                                    <div class="flex-shrink pr-4">
+                                        <div class="rounded-full p-5 bg-indigo-600">
+                                            <!-- <i
+                                                class="fas fa-tasks fa-2x fa-inverse"></i> -->
+                                            </div>
+                                    </div>
+                                    <div class="flex-1 text-right md:text-center">
+                                        <h2 class="font-bold uppercase text-gray-600 fontsite">TDS</h2>
+                                        <p id="TDS" class="font-bold text-3xl">7 mg/l</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Metric Card-->
+                        </div>
+                       
+                    </div>
+
+
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+</body>
+<script src="index.js"></script>
+</html>
